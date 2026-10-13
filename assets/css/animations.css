@@ -1,0 +1,102 @@
+/* =====================================================
+   MIDIR FUTURES — Animations
+   ===================================================== */
+
+/* ── Keyframes ────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Hero entrance animations ─────────────────────── */
+.hero__eyebrow  { animation: slideRight 0.7s ease both; animation-delay: 0.2s; }
+.hero__heading  { animation: slideUp 0.8s ease both;    animation-delay: 0.35s; }
+.hero__subheading { animation: slideUp 0.8s ease both;  animation-delay: 0.5s; }
+.hero__actions  { animation: slideUp 0.8s ease both;    animation-delay: 0.65s; }
+.hero__scroll   { animation: fadeIn 1.2s ease both;     animation-delay: 1.2s; }
+
+/* ── Nav logo entrance ────────────────────────────── */
+.nav-logo { animation: slideRight 0.5s ease both; animation-delay: 0.1s; }
+
+/* ── Counter number animation ─────────────────────── */
+.counter-animated {
+  animation: countUp 0.4s ease forwards;
+}
+
+/* ── Image parallax-lite on hover ─────────────────── */
+@media (hover: hover) {
+  .parallax-img {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .parallax-img:hover { transform: scale(1.04); }
+}
+
+/* ── Button ripple effect ─────────────────────────── */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 50% 50%;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.btn:active::after {
+  inset: -50%;
+  opacity: 1;
+  transition-duration: 0s;
+}
+
+/* ── Focus visible ring ────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-forest);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Loading skeleton (for deferred content) ────────── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e8e8e8 25%, #f8f8f8 50%, #e8e8e8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Reduced motion overrides ─────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
